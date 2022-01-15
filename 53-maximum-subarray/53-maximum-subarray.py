@@ -1,11 +1,15 @@
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        current_sum = global_sum = nums[0]
+        # [a,c,d,e] => max : a
+        # [a,c,d,e,b] => max : a + b, b
+        # global_max
+        this_sum = global_max = nums[0]
         for i in range(1, len(nums)):
-            if current_sum < 0:
-                current_sum = 0
-            current_sum = current_sum + nums[i]            
-            global_sum = max(global_sum, current_sum)
-            # current_sum = current_sum + nums[i] if current_sum > 0 else nums[i]
-            # global_sum = max(global_sum, current_sum)
-        return global_sum
+            ## 
+            if this_sum < 0:
+                this_sum = nums[i]
+            else:
+                this_sum += nums[i]
+            ##
+            global_max = max(this_sum, global_max)
+        return global_max
