@@ -1,17 +1,16 @@
 class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
-        this_num = 0
-        for i in range(len(digits)):
-            this_num *= 10
-            this_num += digits[i]
-        # print(this_num)
-        this_num += 1
-        # 124 => [1, 2, 4]
-        result = []
-        while this_num > 0:
-            result.insert(0, this_num % 10)
-            this_num //= 10
-        # print(result)
-        # result.reverse() # O(N)
-        return result
-        
+        # [9,9,9] => [0,0,0]       
+        idx = len(digits) - 1
+        carry = 1
+        while carry == 1:
+            if idx == -1:
+                digits.insert(0, 1) # O(N)
+                break
+            elif digits[idx] == 9:
+                digits[idx] = 0
+            else:
+                digits[idx] += 1
+                carry = 0
+            idx -= 1
+        return digits
