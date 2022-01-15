@@ -9,9 +9,9 @@ class Solution:
         # 124 => [1, 2, 4]
         result = []
         while this_num > 0:
-            result.append(this_num % 10)
+            result.insert(0, this_num % 10)
             this_num //= 10
         # print(result)
-        result.reverse()
+        # result.reverse() # O(N)
         return result
         
