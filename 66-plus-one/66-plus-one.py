@@ -5,8 +5,13 @@ class Solution:
         for i in range(len(digits)):
             this_num *= 10
             this_num += digits[i]
-        print(this_num)
+        # print(this_num)
         this_num += 1
-        result = list(str(this_num))
-        return result
+        # result = []
+        while this_num > 0:
+            result.append(this_num % 10)
+            this_num //= 10
         
+        # result = list(str(this_num))
+        result.reverse()
+        return result       
