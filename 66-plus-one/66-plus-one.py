@@ -9,9 +9,10 @@ class Solution:
         this_num += 1
         # result = []
         while this_num > 0:
-            result.append(this_num % 10)
+            # result.append(this_num % 10)
+            result.insert(0, this_num % 10)
             this_num //= 10
         
         # result = list(str(this_num))
-        result.reverse()
+        # result.reverse()
         return result       
