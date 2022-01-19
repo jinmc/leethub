@@ -10,6 +10,5 @@ class Solution:
             if runner.next and runner.val == runner.next.val:
                 runner.next = runner.next.next
             else:
-                runner = runner.next
-        
+                runner = runner.next     
         return head
