@@ -3,25 +3,20 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        new_list = [0] * (m+n)
-        count, idx1, idx2 = 0,0,0
-        
-        while count < m+n:
-            if idx2 >= n:
-                new_list[count] = nums1[idx1]
-                idx1 += 1
-            elif idx1 >= m:
-                new_list[count] = nums2[idx2]
-                idx2 += 1
-            elif nums1[idx1] < nums2[idx2]:
-                new_list[count] = nums1[idx1]
-                idx1 += 1
+        # O(n) -> O(1)
+        idx, idx1, idx2 = m + n - 1, m - 1, n - 1
+        while idx >= 0:
+            if idx1 < 0:
+                nums1[idx] = nums2[idx2]
+                idx2 -= 1
+            elif idx2 < 0:
+                nums1[idx] = nums1[idx1]
+                idx1 -= 1
+            elif nums1[idx1] > nums2[idx2]:
+                nums1[idx] = nums1[idx1]
+                idx1 -= 1
             else:
-                new_list[count] = nums2[idx2]
-                idx2 += 1
-            # print(count, idx1, idx2, new_list)
-            count += 1
-        # print(new_list)
-        for i in range(len(new_list)):
-            nums1[i] = new_list[i]
-            
+                nums1[idx] = nums2[idx2]
+                idx2 -= 1
+            # print(idx, idx1, idx2, nums1)
+            idx -= 1
