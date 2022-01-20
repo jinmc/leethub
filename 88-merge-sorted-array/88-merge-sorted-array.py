@@ -3,7 +3,25 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        for i in range(n):
-            nums1[m+i] = nums2[i]
-        nums1.sort()
+        new_list = [0] * (m+n)
+        count, idx1, idx2 = 0,0,0
+        
+        while count < m+n:
+            if idx2 >= n:
+                new_list[count] = nums1[idx1]
+                idx1 += 1
+            elif idx1 >= m:
+                new_list[count] = nums2[idx2]
+                idx2 += 1
+            elif nums1[idx1] < nums2[idx2]:
+                new_list[count] = nums1[idx1]
+                idx1 += 1
+            else:
+                new_list[count] = nums2[idx2]
+                idx2 += 1
+            # print(count, idx1, idx2, new_list)
+            count += 1
+        # print(new_list)
+        for i in range(len(new_list)):
+            nums1[i] = new_list[i]
             
