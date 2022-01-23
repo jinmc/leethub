@@ -13,6 +13,9 @@ class Solution:
             result.append(root.val)
             if root.right:
                 helper(root.right)
-        if root:
-            helper(root)
+                
+        if not root:
+            return []
+        helper(root)
         return result
+        
