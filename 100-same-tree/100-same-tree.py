@@ -15,10 +15,10 @@ class Solution:
             if n1.val != n2.val:
                 return False
             return True
-        
-        deq = deque([(p, q)])
+        deq = [(p,q)]
+        # deq = deque([(p, q)])
         while deq:
-            p, q = deq.popleft()
+            p, q = deq.pop()
             if not check(p, q):
                 return False
             if p:
