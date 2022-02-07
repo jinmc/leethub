@@ -8,9 +8,10 @@ from collections import deque
 
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        my_q = deque([(p, q)])
+        # my_q = deque([(p, q)])
+        my_q = [(p, q)]        
         while my_q:
-            item = my_q.popleft()
+            item = my_q.pop()
             p, q = item
             if p is None and q is None:
                 pass
