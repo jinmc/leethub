@@ -20,18 +20,11 @@ class Solution:
         if even_nums.most_common(1)[0][0] != odd_nums.most_common(1)[0][0]:
             res = min(res, even_nums_total - even_nums.most_common(1)[0][1] + odd_nums_total - odd_nums.most_common(1)[0][1])
         else:
-            if even_nums.most_common(1)[0][1] < odd_nums.most_common(1)[0][1]:
+            if even_nums.most_common(1)[0][1] <= odd_nums.most_common(1)[0][1]:
                 even_remain = even_nums.most_common(2)[1][1] if len(even_nums.most_common(2)) > 1 else 0
                 res = min(res, odd_nums_total - odd_nums.most_common(1)[0][1] + even_nums_total - even_remain)
-            elif even_nums.most_common(1)[0][1] > odd_nums.most_common(1)[0][1]:
+            else:
                 odd_remain = odd_nums.most_common(2)[1][1] if len(odd_nums.most_common(2)) > 1 else 0
                 res = min(res, odd_nums_total - odd_remain + even_nums_total - even_nums.most_common(1)[0][1])
-            else:
-                even_remain = even_nums.most_common(2)[1][1] if len(even_nums.most_common(2)) > 1 else 0
-                odd_remain = odd_nums.most_common(2)[1][1] if len(odd_nums.most_common(2)) > 1 else 0
-                res = min(even_nums_total - even_nums.most_common(1)[0][1] + odd_nums_total - odd_remain,
-                         even_nums_total - even_remain + odd_nums_total - odd_nums.most_common(1)[0][1])
+            
         return res
-                # return even_nums_total - even_nums.most_common(1)[0][1] + odd_nums_total - odd_nums.most_common(1)[0][1]
-        #     return even_nums_total - even_nums.most_common(1)[0][1] + odd_nums_total - odd_nums.most_common(2)[1][1]
-        # return even_nums_total - even_nums.most_common(1)[0][1] + odd_nums_total - odd_nums.most_common(1)[0][1]
