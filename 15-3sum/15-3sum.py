@@ -9,7 +9,7 @@ class Solution:
             l, r = i+1, len(nums)-1
             while l < r:
                 if nums[l] + nums[r] + this_num == 0:
-                    res.append([this_num, nums[l], nums[r]])
+                    res.append((this_num, nums[l], nums[r]))
                     while l < r and nums[l] == nums[l+1]:
                         l += 1
                     while l < r and nums[r] == nums[r-1]:
