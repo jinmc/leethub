@@ -8,7 +8,8 @@ class Solution:
             this_num = nums[i]
             l, r = i+1, len(nums)-1
             while l < r:
-                if nums[l] + nums[r] + this_num == 0:
+                s = nums[l] + nums[r] + this_num
+                if s == 0:
                     res.append((this_num, nums[l], nums[r]))
                     while l < r and nums[l] == nums[l+1]:
                         l += 1
@@ -16,9 +17,9 @@ class Solution:
                         r -= 1
                     r -= 1
                     l += 1
-                elif nums[l] + nums[r] + this_num > 0:
+                elif s > 0:
                     r -= 1
-                elif nums[l] + nums[r] + this_num < 0:
+                elif s < 0:
                     l += 1
         return list(res)
                 
