@@ -3,6 +3,8 @@ class Solution:
         nums.sort()
         res = set()
         for i in range(len(nums)-2):
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
             this_num = nums[i]
             l, r = i+1, len(nums)-1
             while l < r:
