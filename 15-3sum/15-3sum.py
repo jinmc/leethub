@@ -6,14 +6,17 @@ class Solution:
         nums.sort()
         result = set()
         for i in range(len(nums)-2):
-            this_set = set()
-            
-            for j in range(i+1, len(nums)):
-                # nums[i], this_num, nums[j]
-                # nums[i] + this_num + nums[j] = 0
-                # - this_num = nums[i] + nums[j]
-                if -(nums[i]+nums[j]) in this_set:
-                    result.add((nums[i], -(nums[i] + nums[j]), nums[j]))
-                this_set.add(nums[j])
-        # print(result)        
+            l, r = i+1, len(nums)-1
+            while l < r:
+                this_num = nums[i] + nums[l] + nums[r]
+                if this_num == 0:
+                    result.add((nums[i], nums[l], nums[r]))
+                    l += 1
+                    r -= 1
+                elif this_num < 0:
+                    l += 1
+                elif this_num > 0:
+                    r -= 1
         return list(result)
+    
+# [-4, -1, -1, 0, 1, 2]
