@@ -6,12 +6,11 @@ class Solution:
             return []
         # print(my_dict)
         result = [""]
-        for i in digits:
-            this_q = list(result)
+        for digit in digits:
+            q = list(result)
             result = []
-            for this_str in this_q:
-                for j in my_dict[i]:
-                    # print(j)                    
-                    result.append(this_str + j)
+            for s in q:
+                for c in my_dict[digit]:
+                    result.append(s + c)
         return result
-        # print(result)
+            
