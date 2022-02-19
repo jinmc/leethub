@@ -17,6 +17,10 @@ class Solution:
                         result.add((nums[a], nums[b], nums[c], nums[d]))
                         d -= 1
                         c += 1
+                        while c < d and nums[c] == nums[c-1]:
+                            c += 1
+                        while c < d and nums[d] == nums[d+1]:
+                            d -= 1
         return list(result)
                 # for c in range(b+1,len(nums)):
                 #     for d in range(c+1,len(nums)):
