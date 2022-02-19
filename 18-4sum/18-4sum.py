@@ -15,8 +15,7 @@ class Solution:
             # We cannot obtain a sum of target if the smallest value
             # in nums is greater than target // k or if the largest 
             # value in nums is smaller than target // k.
-            if average_value < nums[0] or nums[-1] < average_value:
-                return res
+
             
             if k == 2:
                 return twoSum(nums, target)
