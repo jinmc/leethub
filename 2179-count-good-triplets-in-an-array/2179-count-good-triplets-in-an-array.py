@@ -1,31 +1,29 @@
-from sortedcontainers import SortedList
+class BIT:
+    def __init__(self, n):
+        self.sums = [0] * (n+1)
+    
+    def update(self, i, delta):
+        while i < len(self.sums):
+            self.sums[i] += delta
+            i += i & (-i)
+    
+    def query(self, i):
+        res = 0
+        while i > 0:
+            res += self.sums[i]
+            i -= i & (-i)
+        return res
+
 class Solution:
-    def goodTriplets(self, nums1: List[int], nums2: List[int]) -> int:
-        N, output = len(nums2), 0
-        idx_nums2 = {nums2[i]: i for i in range(N)}
-        nums = []
-        for i in range(N):
-            nums.append(idx_nums2[nums1[i]])
+    def goodTriplets(self, A, B):
+        d = {x: i for i, x in enumerate(A)}
+        n = len(A)
+        arr = [d[B[i]] for i in range(n)]
 
-        smaller = self.countSmallerLeft(nums)
-        greater = self.countGreaterRight(nums)
-
-        for i in range(1, N):
-            output += smaller[i] * greater[i]
-        return output
-        
-    def countSmallerLeft(self, nums: List[int]) -> List[int]:
-        N, output, multiset = len(nums), [None] * len(nums), SortedList()
-        for i in range(0, N):
-            idx = multiset.bisect_left(nums[i])
-            output[i] = idx
-            multiset.add(nums[i])
-        return output
-
-    def countGreaterRight(self, nums: List[int]) -> List[int]:
-        N, output, multiset = len(nums), [None] * len(nums), SortedList()
-        for i in range(N - 1, -1, -1):
-            idx = multiset.bisect_left(nums[i])
-            output[i] = len(multiset) - idx
-            multiset.add(nums[i])
-        return output
+        BIT1, BIT2, ans = BIT(n), BIT(n), 0
+        for i in arr:
+            ans += BIT2.query(i)
+            BIT1.update(i + 1, 1)
+            less = BIT1.query(i)
+            BIT2.update(i + 1, less)
+        return ans
