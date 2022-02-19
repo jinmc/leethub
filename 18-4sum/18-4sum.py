@@ -1,11 +1,13 @@
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
-        result = set()
+        result = []
         nums.sort()
         for a in range(len(nums)-3):
             if a > 0 and nums[a] == nums[a-1]:
                 continue
             for b in range(a+1,len(nums)):
+                if b > a + 1 and nums[b] == nums[b-1]:
+                    continue
                 c, d = b + 1, len(nums)-1
                 while c < d:
                     this_sum = nums[a] + nums[b] + nums[c] + nums[d]
@@ -14,14 +16,14 @@ class Solution:
                     elif this_sum < target:
                         c += 1
                     else:
-                        result.add((nums[a], nums[b], nums[c], nums[d]))
+                        result.append((nums[a], nums[b], nums[c], nums[d]))
                         d -= 1
                         c += 1
                         while c < d and nums[c] == nums[c-1]:
                             c += 1
                         while c < d and nums[d] == nums[d+1]:
                             d -= 1
-        return list(result)
+        return result
                 # for c in range(b+1,len(nums)):
                 #     for d in range(c+1,len(nums)):
                         # if nums[a] + nums[b] + nums[c] + nums[d] == target:
