@@ -4,17 +4,12 @@ class Solution:
         result = set()
         for a in range(len(nums)-3):
             for b in range(a+1, len(nums)-2):
-                
-                l, r = b+1, len(nums)-1
-                while l < r:
-                    this_sum = nums[a] + nums[b] + nums[l] + nums[r]
-                    if this_sum == target:
-                        result.add((nums[a], nums[b], nums[l], nums[r]))
-                        l += 1
-                        r -= 1
-                    elif this_sum < target:
-                        l += 1
+                this_dict = {}
+                # nums[a] + nums[b] + nums[c] + nums[d] = target
+                for c in range(b+1, len(nums)):
+                    if (target - nums[a] - nums[b] - nums[c]) in this_dict:
+                        result.add((nums[a], nums[b], nums[c], target - nums[a] - nums[b] - nums[c]))
                     else:
-                        r -= 1
+                        this_dict[nums[c]] = target - nums[a] - nums[b] - nums[c]
                     
         return list(result)
