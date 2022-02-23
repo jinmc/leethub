@@ -3,7 +3,11 @@ class Solution:
         nums.sort()
         result = set()
         for a in range(len(nums)-3):
+            if a > 0 and nums[a] == nums[a-1]:
+                continue
             for b in range(a+1,len(nums)-2):
+                if b > a + 1 and nums[b] == nums[b-1]:
+                    continue
                 # nums[a] + nums[b] + nums[c] + nums[d] == target
                 c, d = b+1, len(nums)-1
                 while c < d:
@@ -16,5 +20,4 @@ class Solution:
                         c += 1
                     else:
                         d -= 1
-                        
         return list(result)
