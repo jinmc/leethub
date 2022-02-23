@@ -2,11 +2,17 @@ class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
         nums.sort()
         result = set()
-        for a in range(len(nums)-3):
+        for a in range(len(nums)-3): # 4개를 계산
+            avg = target // 4
+            if nums[a] > avg or nums[-1] < avg:
+                continue
             if a > 0 and nums[a] == nums[a-1]:
                 continue
             for b in range(a+1,len(nums)-2):
+                avg2 = (target - nums[a]) // 3
                 if b > a + 1 and nums[b] == nums[b-1]:
+                    continue
+                if nums[b] > avg2 or nums[-1] < avg2:
                     continue
                 # nums[a] + nums[b] + nums[c] + nums[d] == target
                 c, d = b+1, len(nums)-1
