@@ -5,10 +5,16 @@ class Solution:
         for a in range(len(nums)-3):
             for b in range(a+1,len(nums)-2):
                 # nums[a] + nums[b] + nums[c] + nums[d] == target
-                this_dict = {}
-                for c in range(b+1, len(nums)):
-                    if (target-nums[a]-nums[b]-nums[c]) in this_dict:
-                        result.add((nums[a], nums[b], nums[c], target-nums[a]-nums[b]-nums[c]))
+                c, d = b+1, len(nums)-1
+                while c < d:
+                    this_sum = nums[a]+nums[b]+nums[c]+nums[d]
+                    if this_sum == target:
+                        result.add((nums[a], nums[b], nums[c], nums[d]))
+                        c += 1
+                        d -= 1
+                    elif this_sum < target:
+                        c += 1
                     else:
-                        this_dict[nums[c]] = target-nums[a]-nums[b]-nums[c]
+                        d -= 1
+                        
         return list(result)
