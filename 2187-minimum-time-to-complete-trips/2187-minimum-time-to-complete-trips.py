@@ -8,8 +8,8 @@ class Solution:
                 res += time_took // tm
             return res
         
-        l, h = 0, 10 ** 15
-        mid = 10 ** 15
+        l, h = 0, 10 ** 14
+        mid = 10 ** 14
         while l <= h:
             mid = (l + h) // 2
             # print("mid: ", mid, "cal_trips(mid)", cal_trips(mid), "totalTrips: ", totalTrips, "l",l,"h",h)
