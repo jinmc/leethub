@@ -9,11 +9,17 @@ class Solution:
         dummy = ListNode(-1)
         dummy.next = head
         
-        nodelist = [dummy]
-        while head:
-            nodelist.append(head)
-            head = head.next
+        r1 = r2 = dummy
         
-        target = len(nodelist) - 1 - n
-        nodelist[target].next = nodelist[target].next.next
+        for _ in range(n+1):
+            r2 = r2.next
+            
+        # r2가 none
+        while r2:
+            r1 = r1.next
+            r2 = r2.next
+        
+        r1.next = r1.next.next
+        
         return dummy.next
+        
