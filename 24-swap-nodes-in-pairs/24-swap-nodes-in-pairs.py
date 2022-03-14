@@ -25,5 +25,5 @@ class Solution:
                 run = run.next
                 advance = advance.next
             run.next = None
-        print(lst)
+        # print(lst)
         return dummy.next
