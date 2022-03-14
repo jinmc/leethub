@@ -1,17 +1,21 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         ans = []
-        def backtrack(S = [], left = 0, right = 0):
-            if len(S) == 2 * n:
-                ans.append("".join(S))
+        def recurse(l=0,r=0,lst=[]):
+            if l == n and r == n:
+                ans.append("".join(lst))
                 return
-            if left < n:
-                S.append("(")
-                backtrack(S, left+1, right)
-                S.pop()
-            if right < left:
-                S.append(")")
-                backtrack(S, left, right+1)
-                S.pop()
-        backtrack()
+            elif l == n:
+                lst.append(")")
+                recurse(l, r+1, lst)
+            elif l == r:
+                lst.append("(")
+                recurse(l+1, r, lst)
+            else:
+                for i in range(2):
+                    new_list = list(lst)
+                    new_list.append("()"[i])
+                    recurse(l + 1 - i, r + i, new_list)
+        recurse()
         return ans
+                    
