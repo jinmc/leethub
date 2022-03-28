@@ -23,5 +23,5 @@ class Solution:
                 l = mid+1
             else:
                 r = mid-1
-        print(l, r)
+        # print(l, r)
         return l
